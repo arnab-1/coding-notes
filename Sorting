@@ -214,17 +214,11 @@ Problem Constraints
 1 <= N <= 100000
 0 <= A[i] <= 100000
 
-
-
 Input Format
 First and only argument in an integer array A.
 
-
-
 Output Format
 Return an integer denoting the maximum value of A[i] % A[j] for any valid i, j.
-
-
 
 Example Input
 Input 1:
