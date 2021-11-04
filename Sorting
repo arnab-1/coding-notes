@@ -722,4 +722,81 @@ public:
 ```
 ///////////////////////////////////////////////////////////////******************************************\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+quickSort
+
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int partition(vector<int> &A,int l,int h)
+{
+    int p1 = l+1, p2 = h;
+
+    while(p1 != p2)
+    {
+        if(A[p1] < A[l])
+        {
+            p1++;
+            continue;
+        }
+        else if(A[p2] >= A[l])
+        {
+            p2--;
+            continue;
+        }
+
+        swap(A[p1],A[p2]);
+    }
+
+    if(A[p1] > A[l])
+    p1--;
+
+    swap(A[l],A[p1]);
+
+    return p1;
+}
+
+void quickSort(vector<int> &A,int l,int h)
+{
+    if(l >= h)
+    return;
+
+    int p = partition(A,l,h);
+    quickSort(A,l,p-1);
+    quickSort(A,p+1,h);
+}
+
+
+
+void print(vector<int> &A)
+{
+	for(int i: A)
+	cout << i << " ";
+
+	cout << endl;	
+}
+
+int main() {
+	// Your code goes here;
+int n;
+cin>> n;
+
+	vector<int> A(n);
+	for(int i=0 ; i < n ; i++)
+	cin >> A[i];
+
+	quickSort(A,0,A.size()-1);
+
+	print(A);
+
+
+	return 0;
+}
+
+
+///////////////////////////////////////////////////////////////******************************************\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
 
