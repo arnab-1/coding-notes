@@ -628,8 +628,79 @@ Explanation:
 
 
 ////////////////////////////////////////////////////////////////////*******************\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+Q3. Maximum Number
+Solved
+character backgroundcharacter
+Stuck somewhere?
+Ask for help from a TA & get it resolved
+Get help from TA
+You have given an array A having N elements and an integer S.
 
+You have to find a maximum number X such that sum of all its subarrays of size X is less than or equal to S.
 
+You may assume that X will always exist.
+
+Input Format
+
+First argument is A, an Array of N Integers.  
+Second argument is S, an Integer.    
+Output Format
+
+Return a Maximum Number X such that sum of all its subarrays of size X is less than or equal to S.  
+Constraints
+
+1<= N <= 1e5  
+1 <= A[i] <= 1e7  
+1 <= S <= 1e7  
+For Example
+
+Example Input:  
+    A = [1, 3, 4, 2]  
+    S = 7  
+Example Output:  
+    2  
+
+Explanation:  
+    All subarrays of size 2 have the sum less than 7.  
+    Subarays are :  
+    1. [1, 3]  
+    2. [3, 4]  
+    3. [4, 2]  
+
+    You can prove that we can't choose X bigger than 2.
+
+bool check(vector<int> &A,int B,int k)
+{
+    long long int sum = 0;
+    for(int i ; i < k ; i++)
+    {
+        sum += A[i];
+    }
+    long long int maxx = sum;
+    for(int i=k ; i < A.size() ; i++)
+    {
+        sum = sum + A[i] - A[i-k];
+        maxx = max(maxx,sum);
+    }
+    return maxx <= B;
+}
+int Solution::solve(vector<int> &A, int B) {
+    int l = 1, h = A.size();
+    int ans;
+    while(l <= h)
+    {
+        int m = (l+h) >> 1;
+        if(check(A,B,m))
+        {
+            ans = m;
+            l = m + 1;
+        }
+        else
+        h = m -1;
+    }
+
+    return ans;
+}
 
 
 ////////////////////////////////////////////////////////////////////*******************\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
