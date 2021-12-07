@@ -72,6 +72,32 @@ Explanation 2:
  With 3 from A, 2 from B and 3 from C.
 
 
+int Solution::minimize(const vector<int> &A, const vector<int> &B, const vector<int> &C) {
+    //6 min
+
+    int ans=INT_MAX,p1,p2,p3 ;
+    p1=p2=p3=0;
+    while(p1 < A.size() and p2 < B.size() and p3 < C.size())
+    {
+        int maxx = max({A[p1],B[p2],C[p3]});
+        int minn = min({A[p1],B[p2],C[p3]});
+
+        if(abs(maxx-minn) < ans)
+        ans = abs(maxx-minn);
+
+        if(minn == A[p1])
+        p1++;
+        else if(minn == B[p2])
+        p2++;
+        else if(minn == C[p3])
+        p3++;
+
+    }
+
+    return ans;
+}
+
+
 ////////////////////////////////////////////////////////////////////*******************\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 
