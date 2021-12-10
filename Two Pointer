@@ -455,7 +455,76 @@ public:
 
 
 ////////////////////////////////////////////////////////////////////*******************\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+### [16\. 3Sum Closest](https://leetcode.com/problems/3sum-closest/)
 
+Difficulty: **Medium**  
+
+Related Topics: [Array](https://leetcode.com/tag/array/), [Two Pointers](https://leetcode.com/tag/two-pointers/), [Sorting](https://leetcode.com/tag/sorting/)
+
+
+Given an integer array `nums` of length `n` and an integer `target`, find three integers in `nums` such that the sum is closest to `target`.
+
+Return _the sum of the three integers_.
+
+You may assume that each input would have exactly one solution.
+
+**Example 1:**
+
+```
+Input: nums = [-1,2,1,-4], target = 1
+Output: 2
+Explanation: The sum that is closest to the target is 2\. (-1 + 2 + 1 = 2).
+```
+
+**Example 2:**
+
+```
+Input: nums = [0,0,0], target = 1
+Output: 0
+```
+
+**Constraints:**
+
+*   `3 <= nums.length <= 1000`
+*   `-1000 <= nums[i] <= 1000`
+*   `-10<sup>4</sup> <= target <= 10<sup>4</sup>`
+
+
+#### Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    int threeSumClosest(vector<int>& nums, int target) {
+        //1:38 pm
+      
+        sort(nums.begin(),nums.end());
+        int ans = nums[0]+nums[1]+nums[2];
+        
+        for(int i=0; i < nums.size()-1 ; i++)
+        {
+        if(i > 0 and nums[i]==nums[i-1])  continue;
+            int p1=i+1, p2 = nums.size()-1;
+            while(p1<p2)
+            {
+                int sum = nums[i]+nums[p1]+nums[p2];
+                if(abs( target - sum) < abs(ans - target))
+                    ans = sum;
+                
+                if(sum < target)
+                    p1++;
+                else
+                    p2--;
+            }
+        
+        }
+        
+        return ans;
+    }
+};
+```
 
 
 
